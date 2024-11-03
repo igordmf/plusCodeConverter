@@ -17,6 +17,10 @@ export default function Home() {
 
   const generateLatLong = () => {
     try {
+      if (plusCode === '') {
+        setError('Informe um plus code');
+        return;
+      }
       console.log('generateLatLong');
       console.log('plusCode: ', plusCode);
       console.log('decode: ', openLocationCode.decode(plusCode));
@@ -33,8 +37,8 @@ export default function Home() {
     }
   };
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+    <div className="flex min-h-screen flex-col items-center justify-center p-20">
+      <main className="flex h-4/5 w-4/5 flex-col items-center gap-8">
         <input
           type="text"
           id="input"
@@ -55,8 +59,12 @@ export default function Home() {
           <span>isFull {openLocationCode.isFull(plusCode) ? 'Sim' : 'Não'}</span>
           <span>Latitude: {formatToFourDecimals(cordinates.latitudeCenter)}</span>
           <span>Longitude: {formatToFourDecimals(cordinates.longitudeCenter)}</span>
-          <span>Error: {error}</span>
         </div>
+        {error && (
+          <div className="text-red">
+            <span>Error: {error}</span>
+          </div>
+        )}
       </main>
     </div>
   );
