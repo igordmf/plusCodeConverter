@@ -40,13 +40,19 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-20">
       <main className="flex h-4/5 w-4/5 flex-col items-center gap-8">
-        <input
-          type="text"
-          id="input"
-          className="color-blue-600 w-96 rounded-md border border-gray-300 p-2"
-          value={plusCode}
-          onChange={({ target }) => setPlusCode(target.value)}
-        />
+        <div className="flex flex-col gap-3">
+          <label className="text-white" htmlFor="plus-code-input">
+            Digite um plusCode em formato full (8 dígitos antes do sinal +)
+          </label>
+          <input
+            type="text"
+            id="plus-code-input"
+            className="color-blue-600 w-full rounded-md border border-gray-300 p-2"
+            value={plusCode}
+            onChange={({ target }) => setPlusCode(target.value)}
+            placeholder='ex: "59V32G4R+38"'
+          />
+        </div>
         <button
           onClick={generateLatLong}
           type="button"
@@ -61,7 +67,7 @@ export default function Home() {
           <span>Latitude: {formatToFourDecimals(cordinates.latitudeCenter)}</span>
           <span>Longitude: {formatToFourDecimals(cordinates.longitudeCenter)}</span>
         </div>
-        {cordinates.latitudeCenter && cordinates.longitudeCenter && (
+        {cordinates.latitudeCenter && cordinates.longitudeCenter ? (
           <a
             href={`https://www.google.com/maps?q=${cordinates.latitudeCenter},${cordinates.longitudeCenter}`}
             target="_blank"
@@ -70,7 +76,7 @@ export default function Home() {
           >
             Open in Google Maps
           </a>
-        )}
+        ) : null}
         {error && (
           <div className="text-red">
             <span>Error: {error}</span>
