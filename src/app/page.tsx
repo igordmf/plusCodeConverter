@@ -19,6 +19,7 @@ export default function Home() {
     try {
       if (plusCode === '') {
         setError('Informe um plus code');
+        setCordinates({ latitudeCenter: 0, longitudeCenter: 0 });
         return;
       }
       console.log('generateLatLong');
@@ -60,6 +61,16 @@ export default function Home() {
           <span>Latitude: {formatToFourDecimals(cordinates.latitudeCenter)}</span>
           <span>Longitude: {formatToFourDecimals(cordinates.longitudeCenter)}</span>
         </div>
+        {cordinates.latitudeCenter && cordinates.longitudeCenter && (
+          <a
+            href={`https://www.google.com/maps?q=${cordinates.latitudeCenter},${cordinates.longitudeCenter}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white"
+          >
+            Open in Google Maps
+          </a>
+        )}
         {error && (
           <div className="text-red">
             <span>Error: {error}</span>
