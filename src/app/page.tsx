@@ -54,9 +54,9 @@ export default function Home() {
           Gerar coordenadas
         </button>
         <div className="flex flex-col text-white">
-          <span>isValid {openLocationCode.isValid(plusCode) ? 'Sim' : 'Não'}</span>
-          <span>isShort {openLocationCode.isShort(plusCode) ? 'Sim' : 'Não'}</span>
-          <span>isFull {openLocationCode.isFull(plusCode) ? 'Sim' : 'Não'}</span>
+          <span>plusCode válido: {openLocationCode.isValid(plusCode) ? 'Sim' : 'Não'}</span>
+          <span>plusCode formato short: {openLocationCode.isShort(plusCode) ? 'Sim' : 'Não'}</span>
+          <span>plusCode formato full: {openLocationCode.isFull(plusCode) ? 'Sim' : 'Não'}</span>
           <span>Latitude: {formatToFourDecimals(cordinates.latitudeCenter)}</span>
           <span>Longitude: {formatToFourDecimals(cordinates.longitudeCenter)}</span>
         </div>
